@@ -3,7 +3,7 @@
 Affiliate-Branded AI Accounts for Parlays, Odds & Links - Powered by PERSONAS
 
 ## 🔗 Live Demo
-[https://dorianguzman.github.io/HaloAI/](https://dorianguzman.github.io/HaloAI/)
+View the [HALO-AI interactive presentation](https://dorianguzman.github.io/HaloAI/) online.
 
 ## Overview
 
