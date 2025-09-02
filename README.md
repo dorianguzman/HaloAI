@@ -1,78 +1,99 @@
-# HaloAI
+# HALO-AI
 
-Welcome to HaloAI - An innovative AI-powered solution for intelligent automation and assistance.
+Affiliate-Branded AI Accounts for Parlays, Odds & Links - Powered by PERSONAS
 
-## Description
+## 🔗 Live Demo
+[https://dorianguzman.github.io/HaloAI/](https://dorianguzman.github.io/HaloAI/)
 
-HaloAI is a cutting-edge artificial intelligence platform designed to provide intelligent automation capabilities and advanced AI assistance. This repository contains the core implementation and tools for the HaloAI system.
+## Overview
 
-## Installation
+HALO-AI is an innovative platform that creates automated, affiliate-branded AI accounts for sports betting content. It aggregates and curates the best parlays, odds, and betting links into a trusted daily hub that bettors return to regularly.
 
-To get started with HaloAI, follow these steps:
+## 🎯 The Problem We Solve
 
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/HaloAI.git
-cd HaloAI
+- **Fragmented promotions** across operators and channels
+- **No single, trusted hub** bettors return to daily  
+- **Brand building takes time** and paid media to scale
 
-# Install dependencies (to be added)
-# pip install -r requirements.txt
+## 💡 The Solution
+
+HALO-AI provides:
+- 5–10 top parlays & odds posted daily
+- Regional best-odds curation for each market
+- Clean feed with limited replies → trust-first approach
+- Becomes the go-to hub bettors check daily
+
+## 🚀 Key Features
+
+- **Automated Content**: AI-powered daily parlay and odds generation
+- **Regional Targeting**: Customized content for specific betting markets
+- **Brand Customization**: Fully branded accounts for affiliates/operators
+- **Scalable Platform**: Easy replication across regions and operators
+- **Trust-First Design**: Clean, focused content without spam
+
+## 📁 Project Structure
+
+```
+HaloAI/
+├── index.html          # Interactive pitch deck presentation
+├── assets/            # Fonts and design assets
+│   ├── Youth-Light.woff2
+│   ├── Youth-Light.otf
+│   ├── Youth-Medium.woff2
+│   └── Youth-Medium.otf
+├── images/            # Project images and screenshots
+└── README.md          # This file
 ```
 
-## Usage
+## 🎨 Interactive Presentation
 
-```python
-# Example usage (to be implemented)
-from haloai import HaloAI
+The repository includes an interactive HTML presentation that showcases the HALO-AI concept.
 
-# Initialize HaloAI
-halo = HaloAI()
+### 💻 Local Viewing
+Open `index.html` in your browser to view the presentation locally.
 
-# Run AI assistance
-result = halo.assist("Your query here")
-```
+### ✨ Features
+- 8 slides with smooth scroll navigation
+- Modern glass morphism design
+- Responsive layout for all devices
+- Keyboard navigation (Arrow keys/Space)
 
-## Features
+## 🤝 Partnership with QStarLabs
 
-- 🤖 Advanced AI capabilities
-- 🚀 High-performance processing
-- 🔧 Easy integration
-- 📊 Comprehensive analytics
-- 🔒 Secure and reliable
+HALO-AI is powered by QStarLabs PERSONAS technology, offering:
+- Proven platform infrastructure
+- Fast setup — spin up in days
+- Regional targeting by market
+- Aggregate traffic to one trusted hub
 
-## Requirements
+## 🎯 Value Proposition
 
-- Python 3.8 or higher
-- Additional requirements to be specified
+### For Operators & Affiliates
+- Branded AI presence with consistent output
+- Centralized links & bet slips to maximize ROI
+- Rapid replication for new regions/OPs
 
-## Contributing
+### For Consumers
+- One trusted hub for parlays & odds
+- Region-specific best odds in one place
+- Consistent daily content without spam
 
-We welcome contributions to HaloAI! Please follow these steps:
+## 📞 Get Started
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+Ready to launch your Halo? [Schedule a call with QStarLabs](https://calendly.com/yang-qstar)
 
-## License
+## 🛠️ Technical Stack
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+- Pure HTML/CSS/JavaScript
+- Glass morphism UI design
+- Scroll-snap navigation
+- Youth font family for branding
+- Responsive design principles
 
-## Support
+## 📄 License
 
-For support, questions, or feedback:
-- Open an issue in this repository
-- Contact the maintainers at support@haloai.com
-
-## Roadmap
-
-- [ ] Core AI engine implementation
-- [ ] API development
-- [ ] Documentation
-- [ ] Testing framework
-- [ ] Deployment tools
+© 2024 QStarLabs. All rights reserved.
 
 ---
 
-**Note:** This project is under active development. Features and documentation will be updated regularly.
+*HALO-AI - Where AI meets affiliate marketing in sports betting*
