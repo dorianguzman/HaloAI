@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HALO AI - Affiliate-Branded AI Accounts</title>
+    <meta name="description" content="HALO AI - Affiliate-Branded AI Accounts for Parlays, Odds & Links. Powered by QStarLabs PERSONAS">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @font-face {
+            font-family: 'Youth';
+            src: url("assets/Youth-Light.woff2") format('woff2'),
+                 url("assets/Youth-Light.otf") format("opentype");
+        }
+
+        @font-face {
+            font-family: 'Youth';
+            src: url("assets/Youth-Medium.woff2") format('woff2'),
+                 url("assets/Youth-Medium.otf") format("opentype");
+            font-weight: bold;
+        }
+
+        :root {
+            --violet-500: #8b5cf6;
+            --violet-600: #7c3aed;
+            --violet-400: #a78bfa;
+            --fuchsia-500: #d946ef;
+            --fuchsia-600: #c026d3;
+            --zinc-900: #18181b;
+            --zinc-950: #09090b;
+            --white: #ffffff;
+            --black: #000000;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --text-muted: rgba(255, 255, 255, 0.6);
+            --border-subtle: rgba(255, 255, 255, 0.1);
+            --border-light: rgba(255, 255, 255, 0.15);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-snap-type: y mandatory;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--black);
+            color: var(--white);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Background halo effect */
+        .halo-bg {
+            pointer-events: none;
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(ellipse at center, rgba(124, 58, 237, 0.35) 0%, rgba(0, 0, 0, 0) 60%);
+            z-index: 1;
+        }
+
+        /* Logo */
+        .logo-fixed {
+            position: fixed;
+            top: 24px;
+            left: 24px;
+            z-index: 50;
+            opacity: 0.9;
+        }
+
+        .logo-fixed img {
+            height: 40px;
+            width: auto;
+        }
+
+        /* Container */
+        .container {
+            width: 100%;
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Slide base */
+        .slide {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            scroll-snap-align: start;
+            position: relative;
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            width: 100%;
+            position: relative;
+        }
+
+        /* Glass effect */
+        .glass {
+            backdrop-filter: blur(48px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-family: 'Youth', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .youth {
+            font-family: 'Youth', sans-serif;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: clamp(4rem, 10vw, 7rem);
+            font-weight: 900;
+            line-height: 0.9;
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 6vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        h3 {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--violet-400);
+        }
+
+        p {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        .subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+        }
+
+        .kicker {
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            font-family: 'Youth', sans-serif;
+        }
+
+        /* Buttons */
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 32px;
+            background: linear-gradient(to right, var(--violet-500), var(--fuchsia-500));
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            font-family: 'Youth', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 25px 60px rgba(139, 92, 246, 0.4);
+        }
+
+        /* Grid layouts */
+        .grid {
+            display: grid;
+            gap: 24px;
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-4 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        }
+
+        /* Cards */
+        .card {
+            border-radius: 16px;
+            padding: 32px;
+            background: linear-gradient(to bottom, var(--zinc-900), var(--zinc-950));
+            border: 1px solid var(--border-subtle);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 16px;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: start;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .check-icon {
+            color: var(--violet-400);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* Slide specific styles */
+        .title-slide-box {
+            text-align: center;
+            padding: 64px 40px;
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .title-slide-box::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 24px;
+            background: linear-gradient(to right, var(--violet-500), var(--fuchsia-500));
+            opacity: 0.3;
+            filter: blur(32px);
+            z-index: -1;
+        }
+
+        .mockup-image {
+            border-radius: 16px;
+            border: 1px solid var(--border-subtle);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            max-width: 100%;
+            height: auto;
+            max-height: 500px;
+            object-fit: contain;
+        }
+
+        /* Solution slide */
+        .solution-box {
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid var(--border-subtle);
+            background: linear-gradient(to bottom right, rgba(139, 92, 246, 0.2), rgba(217, 70, 239, 0.1));
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Value cards */
+        .value-card {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        /* Roadmap items */
+        .roadmap-item {
+            background: rgba(24, 24, 27, 0.6);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 16px;
+        }
+
+        .roadmap-item h4 {
+            color: var(--violet-400);
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            z-index: 10;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 20px;
+            }
+
+            .grid-3, .grid-4 {
+                grid-template-columns: 1fr;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .logo-fixed {
+                top: 16px;
+                left: 16px;
+            }
+
+            .logo-fixed img {
+                height: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="halo-bg"></div>
+    
+    <!-- Fixed QStarLabs Logo -->
+    <div class="logo-fixed">
+        <svg xmlns="http://www.w3.org/2000/svg" width="120" height="24" viewBox="0 0 236 44" fill="white">
+            <path d="M161.583 34.9776C158.255 34.9776 157.141 33.7515 157.141 30.4192V9.01063H161.85V30.7022H170.139V34.9619H161.583V34.9776Z" fill="white"/>
+            <path d="M188.617 23.9904C188.617 19.9507 185.697 16.9799 181.804 16.9799C177.91 16.9799 175.022 19.9507 175.022 23.9904C175.022 28.03 177.942 31.0322 181.804 31.0322C185.697 31.048 188.617 28.0772 188.617 23.9904ZM188.507 13.176H192.95V34.9776H188.507V32.164C186.984 34.1602 184.441 35.4334 181.364 35.4334C175.147 35.4334 170.296 30.655 170.296 24.0847C170.296 17.5143 175.147 12.7359 181.364 12.7359C184.284 12.7359 186.843 13.8834 188.507 15.9582V13.176Z" fill="white"/>
+            <path d="M214.159 23.9904C214.159 19.9507 211.239 16.9799 207.377 16.9799C203.515 16.9799 200.564 19.9507 200.564 23.9904C200.564 28.03 203.484 31.0322 207.377 31.0322C211.239 31.048 214.159 28.0772 214.159 23.9904ZM218.9 24.0689C218.9 30.6393 214.081 35.4177 207.864 35.4177C204.756 35.4177 202.197 34.1602 200.674 32.1168V34.9776H196.262V9.01063H200.894V15.7224C202.479 13.8676 204.96 12.7202 207.848 12.7202C214.097 12.7202 218.9 17.5458 218.9 24.0689Z" fill="white"/>
+            <path d="M220.376 28.4387H224.929C225.117 30.4349 226.483 31.6295 228.257 31.6295C230.031 31.6295 231.224 30.5607 231.224 29.1146C231.224 27.2284 229.811 26.7097 226.483 25.8137C223.155 24.8863 220.596 22.9215 220.596 19.1333C220.596 15.3452 223.563 12.7202 227.959 12.7202C232.354 12.7202 235.149 15.2352 235.479 19.3534H230.926C230.816 17.5301 229.56 16.4612 227.959 16.4612C226.248 16.4612 225.149 17.5301 225.149 18.8347C225.149 20.5009 226.216 21.0667 229.623 22.0255C233.029 22.9844 235.73 25.0592 235.73 28.7373C235.73 32.8556 232.731 35.4177 228.21 35.4177C223.689 35.4177 220.643 32.8241 220.376 28.4387Z" fill="white"/>
+            <path d="M70.6077 30.8908C65.7096 30.8908 61.7221 26.8983 61.7221 21.9941C61.7221 17.0899 65.7096 13.0974 70.6077 13.0974C75.5058 13.0974 79.4934 17.0899 79.4934 21.9941C79.4934 23.9118 78.8811 25.688 77.845 27.1498L75.8826 25.185H70.1367L74.7837 29.8376C73.5434 30.4978 72.1148 30.8908 70.6077 30.8908ZM85.6787 34.9776L81.0789 30.3721C82.9157 28.0772 84.0147 25.1535 84.0147 21.9941C84.0147 14.575 78.0176 8.57051 70.6077 8.57051C63.1978 8.57051 57.2008 14.575 57.2008 21.9941C57.2008 29.4132 63.1978 35.4177 70.6077 35.4177C73.3707 35.4177 75.9454 34.5846 78.0804 33.1385L79.9172 34.9776H85.6787Z" fill="white"/>
+            <path d="M114.879 30.8908C112.728 30.8908 111.802 30.6393 111.802 28.4858L111.833 18.9133H114.973V14.8422H111.833V9.08922H107.249V28.5487C107.249 33.6729 110.106 34.9619 114.172 34.9619H115.177V30.8908H114.879Z" fill="white"/>
+            <path d="M134.864 23.9904C134.864 19.9507 131.944 16.9799 128.05 16.9799C124.157 16.9799 121.268 19.9507 121.268 23.9904C121.268 28.03 124.188 31.0322 128.05 31.0322C131.928 31.048 134.864 28.0772 134.864 23.9904ZM134.754 13.176H139.197V34.9776H134.754V32.164C133.231 34.1602 130.688 35.4334 127.611 35.4334C121.394 35.4334 116.543 30.655 116.543 24.0847C116.543 17.5143 121.394 12.7359 127.611 12.7359C130.531 12.7359 133.09 13.8834 134.754 15.9582V13.176Z" fill="white"/>
+            <path d="M153.812 12.9403V17.4986H153.546C150.327 17.4986 147.109 18.6775 147.109 24.9177V34.9619H142.525V13.176H146.889V16.3983C148.192 14.1663 150.547 12.956 153.624 12.956H153.812V12.9403Z" fill="white"/>
+            <path d="M87.1545 27.1183H91.8956C92.1624 29.9005 93.8579 31.378 96.15 31.378C98.442 31.378 99.745 29.9634 99.745 28.0772C99.745 25.5936 98.1124 24.7448 94.376 23.6603C90.5611 22.5914 87.5312 20.5009 87.5312 16.0525C87.5312 11.6042 90.8594 8.57051 95.7889 8.57051C100.718 8.57051 103.78 11.4313 104.188 16.3197H99.4782C99.2898 13.9148 97.7356 12.6102 95.7732 12.6102C93.8108 12.6102 92.288 13.9148 92.288 15.7224C92.288 17.9545 93.7637 18.6932 97.3588 19.7935C101.205 20.941 104.549 23.4245 104.549 27.6528C104.549 32.5098 101.142 35.402 96.1029 35.402C90.8908 35.4177 87.5155 32.3369 87.1545 27.1183Z" fill="white"/>
+            <path d="M22.2548 2.73895L24.1701 14.2135L36.6194 5.37966C28.3617 -1.80369 16.0537 -1.78797 7.79605 5.39538L20.1041 14.1034L22.2548 2.73895Z" fill="white"/>
+            <path d="M41.4704 21.9312L30.0572 24.0218L38.8487 36.408C45.9917 28.1715 46.0231 15.8953 38.9115 7.64312L30.2927 20.0765L41.4704 21.9312Z" fill="white"/>
+            <path d="M3.00786 21.9941L14.0913 20.1236L5.53539 7.69028C-1.51345 15.9425 -1.48206 28.1558 5.61389 36.3765L14.3111 24.0689L3.00786 21.9941Z" fill="white"/>
+            <path d="M44.2177 44L24.123 30.1677L22.2391 41.0449L22.2077 41.2021L20.2297 30.2306L7.90594 38.6871C12.0191 42.2238 17.137 44 22.2391 44H44.2177Z" fill="white"/>
+        </svg>
+    </div>
+
+    <div class="container">
+        <!-- Slide 1: Title -->
+        <section class="slide">
+            <div class="slide-content fade-in">
+                <div class="title-slide-box glass">
+                    <h1>HALO AI</h1>
+                    <p class="subtitle">Affiliate-Branded AI Accounts for Parlays, Odds & Links</p>
+                    <div class="kicker">
+                        <span style="font-size: 16px;">✨</span>
+                        Powered by QStarLabs PERSONAS
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 2: Problem -->
+        <section class="slide">
+            <div class="slide-content fade-in">
+                <div>
+                    <h2>The Problem</h2>
+                    <p class="subtitle">Promotions are scattered, trust is thin, and it's slow to build mindshare in crowded betting markets.</p>
+                    <div class="grid grid-3" style="margin-top: 32px;">
+                        <div class="card">
+                            <svg class="card-icon" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M17.66 11.2C17.43 10.9 17.15 10.64 16.89 10.38C16.22 9.78 15.46 9.35 14.82 8.72C13.33 7.26 13 4.85 13.95 3C13 3.23 12.17 3.75 11.46 4.32C8.87 6.4 7.85 10.07 9.07 13.22C9.11 13.32 9.15 13.42 9.15 13.55C9.15 13.77 9 13.97 8.8 14.05C8.57 14.15 8.33 14.09 8.14 13.93C8.08 13.88 8.04 13.83 8 13.76C6.87 12.33 6.69 10.28 7.45 8.64C5.78 10 4.87 12.3 5 14.47C5.06 14.97 5.12 15.47 5.29 15.97C5.43 16.57 5.7 17.17 6 17.7C7.08 19.43 8.95 20.67 10.96 20.92C13.1 21.19 15.39 20.8 17.03 19.32C18.86 17.66 19.5 15 18.56 12.72L18.43 12.46C18.22 12 17.66 11.2 17.66 11.2M14.5 17.5C14.22 17.74 13.76 18 13.4 18.1C12.28 18.5 11.16 17.94 10.5 17.28C11.69 17 12.4 16.12 12.61 15.23C12.78 14.43 12.46 13.77 12.33 13C12.21 12.26 12.23 11.63 12.5 10.94C12.69 11.32 12.89 11.7 13.13 12C13.9 13 15.11 13.44 15.37 14.8C15.41 14.94 15.43 15.08 15.43 15.23C15.46 16.05 15.1 16.95 14.5 17.5H14.5Z"/>
+                            </svg>
+                            <p>Fragmented promotions across operators and channels</p>
+                        </div>
+                        <div class="card">
+                            <svg class="card-icon" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2A10 10 0 0 0 2 12A10 10 0 0 0 12 22A10 10 0 0 0 22 12A10 10 0 0 0 12 2M12 8.39C13.57 9.4 15.42 10 17.42 10C18.2 10 18.95 9.91 19.67 9.74C19.88 10.45 20 11.21 20 12C20 16.41 16.41 20 12 20C9 20 6.39 18.34 5 15.89L6.75 14V13A1.25 1.25 0 0 1 8 11.75A1.25 1.25 0 0 1 9.25 13V14H12M16 11.75A1.25 1.25 0 0 0 14.75 13A1.25 1.25 0 0 0 16 14.25A1.25 1.25 0 0 0 17.25 13A1.25 1.25 0 0 0 16 11.75Z"/>
+                            </svg>
+                            <p>No single, trusted hub bettors return to daily</p>
+                        </div>
+                        <div class="card">
+                            <svg class="card-icon" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M13.13 22.19L11.5 18.36C13.07 17.78 14.54 17 15.9 16.09L13.13 22.19M5.64 12.5L1.81 10.87L7.91 8.1C7 9.46 6.22 10.93 5.64 12.5M21.61 2.39C21.61 2.39 16.66 .269 11 5.93C8.81 8.12 7.5 10.53 6.65 12.64C6.37 13.39 6.56 14.21 7.11 14.77L9.24 16.89C9.79 17.45 10.61 17.63 11.36 17.35C13.5 16.5 15.88 15.19 18.07 13C23.73 7.34 21.61 2.39 21.61 2.39M14.54 9.46C13.76 8.68 13.76 7.41 14.54 6.63S16.59 5.85 17.37 6.63C18.14 7.41 18.15 8.68 17.37 9.46C16.59 10.24 15.32 10.24 14.54 9.46M8.88 16.53L7.47 15.12L8.88 16.53M6.24 22L9.88 18.36C9.54 18.27 9.21 18.12 8.91 17.91L4.83 22H6.24M2 22H3.41L8.18 17.24L6.76 15.83L2 20.59V22M2 19.17L6.09 15.09C5.88 14.79 5.73 14.47 5.64 14.12L2 17.76V19.17Z"/>
+                            </svg>
+                            <p>Brand building takes time and paid media to scale</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 3: Solution -->
+        <section class="slide">
+            <div class="slide-content fade-in">
+                <div class="solution-box">
+                    <h2>The Solution: Halo AI</h2>
+                    <div class="grid grid-2" style="align-items: center;">
+                        <div>
+                            <ul class="feature-list">
+                                <li>
+                                    <span class="check-icon">✓</span>
+                                    <span>5–10 top parlays & odds posted daily</span>
+                                </li>
+                                <li>
+                                    <span class="check-icon">✓</span>
+                                    <span>Regional best-odds curation for each market</span>
+                                </li>
+                                <li>
+                                    <span class="check-icon">✓</span>
+                                    <span>Clean feed with limited replies → trust-first</span>
+                                </li>
+                                <li>
+                                    <span class="check-icon">✓</span>
+                                    <span>Becomes the go-to hub bettors check daily</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div style="text-align: center;">
+                            <img src="images/Screenshot 2025-09-02 at 20.02.25.png" alt="HaloAI X conversation mockup" class="mockup-image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 4: How it works -->
+        <section class="slide">
+            <div class="slide-content fade-in">
+                <div>
+                    <h2>How It Works</h2>
+                    <div class="grid grid-4">
+                        <div class="card">
+                            <svg class="card-icon" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M10,16.5L16,12L10,7.5V16.5Z"/>
+                            </svg>
+                            <p>Affiliate/Operator branding on a dedicated Halo account</p>
+                        </div>
+                        <div class="card">
+                            <svg class="card-icon" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12,2A3,3 0 0,1 15,5V11A3,3 0 0,1 12,14A3,3 0 0,1 9,11V5A3,3 0 0,1 12,2M19,11C19,14.53 16.39,17.44 13,17.93V21H11V17.93C7.61,17.44 5,14.53 5,11H7A5,5 0 0,0 12,16A5,5 0 0,0 17,11H19Z"/>
+                            </svg>
+                            <p>Automated, localized daily parlays & best-odds posts</p>
+                        </div>
+                        <div class="card">
+                            <svg class="card-icon" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12,5.5A3.5,3.5 0 0,1 15.5,9A3.5,3.5 0 0,1 12,12.5A3.5,3.5 0 0,1 8.5,9A3.5,3.5 0 0,1 12,5.5M5,8C5.56,8 6.08,8.15 6.53,8.42C6.38,9.85 6.8,11.27 7.66,12.38C7.16,13.34 6.16,14 5,14A3,3 0 0,1 2,11A3,3 0 0,1 5,8M19,8A3,3 0 0,1 22,11A3,3 0 0,1 19,14C17.84,14 16.84,13.34 16.34,12.38C17.2,11.27 17.62,9.85 17.47,8.42C17.92,8.15 18.44,8 19,8M5.5,18.25C5.5,16.18 8.41,14.5 12,14.5C15.59,14.5 18.5,16.18 18.5,18.25V20H5.5V18.25M0,20V18.5C0,17.11 1.89,15.94 4.45,15.6C3.86,16.28 3.5,17.22 3.5,18.25V20H0M24,20H20.5V18.25C20.5,17.22 20.14,16.28 19.55,15.6C22.11,15.94 24,17.11 24,18.5V20Z"/>
+                            </svg>
+                            <p>AI Personas + influencers push traffic and engagement</p>
+                        </div>
+                        <div class="card">
+                            <svg class="card-icon" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z"/>
+                            </svg>
+                            <p>Replicate per region/operator for fast scale</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5: Why Partner -->
+        <section class="slide">
+            <div class="slide-content fade-in">
+                <div class="glass" style="border-radius: 24px; padding: 40px;">
+                    <h2>Why Partner with QStarLabs</h2>
+                    <div class="grid grid-4" style="margin-top: 32px;">
+                        <div class="value-card">
+                            <svg class="card-icon" style="margin: 0 auto 16px;" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M13.13 22.19L11.5 18.36C13.07 17.78 14.54 17 15.9 16.09L13.13 22.19M5.64 12.5L1.81 10.87L7.91 8.1C7 9.46 6.22 10.93 5.64 12.5M21.61 2.39C21.61 2.39 16.66 .269 11 5.93C8.81 8.12 7.5 10.53 6.65 12.64C6.37 13.39 6.56 14.21 7.11 14.77L9.24 16.89C9.79 17.45 10.61 17.63 11.36 17.35C13.5 16.5 15.88 15.19 18.07 13C23.73 7.34 21.61 2.39 21.61 2.39M14.54 9.46C13.76 8.68 13.76 7.41 14.54 6.63S16.59 5.85 17.37 6.63C18.14 7.41 18.15 8.68 17.37 9.46C16.59 10.24 15.32 10.24 14.54 9.46M8.88 16.53L7.47 15.12L8.88 16.53M6.24 22L9.88 18.36C9.54 18.27 9.21 18.12 8.91 17.91L4.83 22H6.24M2 22H3.41L8.18 17.24L6.76 15.83L2 20.59V22M2 19.17L6.09 15.09C5.88 14.79 5.73 14.47 5.64 14.12L2 17.76V19.17Z"/>
+                            </svg>
+                            <p>Proven platform powering PERSONAS</p>
+                        </div>
+                        <div class="value-card">
+                            <svg class="card-icon" style="margin: 0 auto 16px;" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"/>
+                            </svg>
+                            <p>Fast setup — spin up in days</p>
+                        </div>
+                        <div class="value-card">
+                            <svg class="card-icon" style="margin: 0 auto 16px;" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z"/>
+                            </svg>
+                            <p>Regional targeting by market</p>
+                        </div>
+                        <div class="value-card">
+                            <svg class="card-icon" style="margin: 0 auto 16px;" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M10.59,13.41C11,13.8 11,14.44 10.59,14.83C10.2,15.22 9.56,15.22 9.17,14.83C7.22,12.88 7.22,9.71 9.17,7.76V7.76L12.71,4.22C14.66,2.27 17.83,2.27 19.78,4.22C21.73,6.17 21.73,9.34 19.78,11.29L18.29,12.78C18.3,11.96 18.17,11.14 17.89,10.36L18.36,9.88C19.54,8.71 19.54,6.81 18.36,5.64C17.19,4.46 15.29,4.46 14.12,5.64L10.59,9.17C9.41,10.34 9.41,12.24 10.59,13.41M13.41,9.17C13.8,8.78 14.44,8.78 14.83,9.17C16.78,11.12 16.78,14.29 14.83,16.24V16.24L11.29,19.78C9.34,21.73 6.17,21.73 4.22,19.78C2.27,17.83 2.27,14.66 4.22,12.71L5.71,11.22C5.7,12.04 5.83,12.86 6.11,13.65L5.64,14.12C4.46,15.29 4.46,17.19 5.64,18.36C6.81,19.54 8.71,19.54 9.88,18.36L13.41,14.83C14.59,13.66 14.59,11.76 13.41,10.59C13,10.2 13,9.56 13.41,9.17Z"/>
+                            </svg>
+                            <p>Aggregate traffic to one trusted hub</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 6: Proposal -->
+        <section class="slide">
+            <div class="slide-content fade-in">
+                <div class="grid grid-2" style="gap: 40px;">
+                    <div>
+                        <h2>Proposal</h2>
+                        <ol style="list-style: decimal; padding-left: 24px; font-size: 1.125rem; line-height: 2;">
+                            <li>QStarLabs builds & operates the branded Halo AI account</li>
+                            <li>Operator/Affiliate supplies brand assets & promotion</li>
+                            <li>AI PERSONAS + paid/owned campaigns drive usage</li>
+                            <li>Replicate accounts by region to scale visibility</li>
+                        </ol>
+                    </div>
+                    <div class="card" style="background: rgba(24, 24, 27, 0.6);">
+                        <h3>What you get</h3>
+                        <ul class="feature-list">
+                            <li>
+                                <span class="check-icon">✓</span>
+                                <span>Turnkey social account with automation</span>
+                            </li>
+                            <li>
+                                <span class="check-icon">✓</span>
+                                <span>Content strategy + playbooks</span>
+                            </li>
+                            <li>
+                                <span class="check-icon">✓</span>
+                                <span>Analytics & link tracking</span>
+                            </li>
+                            <li>
+                                <span class="check-icon">✓</span>
+                                <span>Scale plan by region/operator</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 7: Value -->
+        <section class="slide">
+            <div class="slide-content fade-in">
+                <div class="grid grid-2" style="gap: 32px;">
+                    <div class="card" style="background: rgba(24, 24, 27, 0.6);">
+                        <h3 style="font-size: 1.5rem;">For Operators & Affiliates</h3>
+                        <ul class="feature-list">
+                            <li>
+                                <span class="check-icon">✓</span>
+                                <span>Branded AI presence with consistent output</span>
+                            </li>
+                            <li>
+                                <span class="check-icon">✓</span>
+                                <span>Centralized links & bet slips to maximize ROI</span>
+                            </li>
+                            <li>
+                                <span class="check-icon">✓</span>
+                                <span>Rapid replication for new regions/OPs</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card" style="background: rgba(24, 24, 27, 0.6);">
+                        <h3 style="font-size: 1.5rem;">For Consumers</h3>
+                        <ul class="feature-list">
+                            <li>
+                                <span class="check-icon">✓</span>
+                                <span>One trusted hub for parlays & odds</span>
+                            </li>
+                            <li>
+                                <span class="check-icon">✓</span>
+                                <span>Region-specific best odds in one place</span>
+                            </li>
+                            <li>
+                                <span class="check-icon">✓</span>
+                                <span>Consistent daily content without spam</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 8: CTA -->
+        <section class="slide">
+            <div class="slide-content fade-in">
+                <div class="glass" style="text-align: center; padding: 64px 40px; border-radius: 24px;">
+                    <h2 style="font-size: clamp(2.5rem, 8vw, 5rem); margin-bottom: 16px;">Ready to launch your Halo?</h2>
+                    <p style="font-size: 1.25rem; margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                        We'll stand up a branded AI account in days, seed it with PERSONAS, and centralize your affiliate traffic by region.
+                    </p>
+                    <a href="#" class="cta-button">
+                        Get Started
+                        <span style="font-size: 1.2em;">→</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="scroll-indicator">Scroll ↓</div>
+</body>
+</html>
