@@ -42,6 +42,7 @@ HaloAI/
 │   ├── Youth-Medium.woff2
 │   └── Youth-Medium.otf
 ├── images/            # Project images and screenshots
+│   └── halo-ai.png    # HALO-AI mockup image
 └── README.md          # This file
 ```
 
